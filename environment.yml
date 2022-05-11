@@ -1,0 +1,10 @@
+name: hw1_environment1
+dependencies:
+  - python=3.9.7
+  - pip
+  - pip:
+    - pandas
+    - scipy
+    - xgboost
+    - sklearn
+    - matplotlib
