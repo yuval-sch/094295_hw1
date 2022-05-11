@@ -1,4 +1,4 @@
-name: hw1_environment1
+name: hw1_env
 dependencies:
   - python=3.9.7
   - pip
