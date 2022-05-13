@@ -5,6 +5,9 @@ from scipy.stats import ttest_ind, mannwhitneyu
 from sklearn.utils import shuffle
 
 def read_dir(path):
+	"""
+	preprocess all the files into dataframes  
+	"""
 	patients = []
 	os.chdir(path)
 	for file in os.listdir():
@@ -24,7 +27,7 @@ def read_dir(path):
 						sepsis = True
 						sepsis_index = i
 						break
-				df['num_hours'] = [i + 1] * len(df)
+				df['num_hours'] = [i + 1] * len(df) # our new column
 				if sepsis:
 					df['label'] = labels * len(df)
 					df = df.iloc[: sepsis_index + 1, :]
@@ -35,6 +38,9 @@ def read_dir(path):
 	return patients
 
 def statistics(all_patients):
+	"""
+	creates all the statistic graphs
+	"""
 	df = all_patients[0].mean().to_frame().T
 	for i, patient in enumerate(all_patients):
 		df = pd.concat([df, patient.mean().to_frame().T], ignore_index=True)
@@ -89,6 +95,9 @@ def statistics(all_patients):
 
 
 def create_set(patients, keep_columns, min_max_columns, train=True):
+	"""
+	creates csv from the dataframe with and without missing values
+	"""
 	min_dict = {}
 	for col in min_max_columns:
 		min_dict[col] = "Min_" + col
