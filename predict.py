@@ -8,6 +8,9 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.compose import ColumnTransformer
 
 def read_dir(path):
+	"""
+	preprocess all the files into dataframes  
+	"""
 	patients = []
 	os.chdir(path)
 	for file in os.listdir():
@@ -39,6 +42,9 @@ def read_dir(path):
 
 
 def create_set(patients, keep_columns, min_max_columns, train=True):
+	"""
+	creates csv from the dataframe with and without missing values
+	"""
 	min_dict = {}
 	for col in min_max_columns:
 		min_dict[col] = "Min_" + col
